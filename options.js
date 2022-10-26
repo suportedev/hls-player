@@ -6,10 +6,10 @@ function save_options() {
     hlsjs: v,
     debug: dbg,
     native_video: ntv
-  }, function() {
+  }, function () {
     var status = document.getElementById('status');
     status.textContent = 'Options saved.';
-    setTimeout(function() {
+    setTimeout(function () {
       status.textContent = '';
     }, 750);
   });
@@ -20,7 +20,7 @@ function restore_options() {
     hlsjs: currentVersion,
     debug: false,
     native_video: false
-  }, function(items) {
+  }, function (items) {
     document.getElementById('hlsjsSel').value = items.hlsjs;
     document.getElementById('cbDebug').checked = items.debug;
     document.getElementById('cbNative').checked = items.native_video;

@@ -6,8 +6,10 @@
   "icons": { "128": "img/icon128.png" },
   "background": { "scripts": [ "event.js", "global.js"] },
   "content_security_policy": "script-src 'self' blob:; object-src 'self'",
+  "host_permissions": [
+    "tabs"
+  ],
   "permissions": [
-    "tabs",
     "*://*/*.m3u8*",
     "webRequest",
     "webRequestBlocking",
