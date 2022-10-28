@@ -102,12 +102,3 @@ chrome.storage.local.get({
 $(window).bind('hashchange', function () {
   playM3u8(window.location.href.split("#")[1]);
 });
-
-
-$(document).ready(function () {
-  console.log('before')
-  window.electronAPI.onUpdateCounter((_event, value) => {
-    video.style.height = '30%';
-    video.style.width = '30%';
-  })
-})

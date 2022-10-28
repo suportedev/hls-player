@@ -1,0 +1,55 @@
+:root {
+  --animation-time: .8s;
+  --animation-ease: cubic-bezier(1, -0.01, 0, 1) --reduce-width: 0;
+  --reduce-width: 1440;
+  --reduce-percent: calc(var(--reduce-width) / 1920);
+  --animation-o-name: zoom-out;
+  --animation-i-name: zoom-in;
+  --transform-origin: top left;
+}
+
+@keyframes zoom-out {
+  0% {
+    width: 100%;
+  }
+
+  100% {
+    transform: scale(var(--reduce-percent));
+  }
+}
+
+@keyframes zoom-in {
+  0% {
+    transform: scale(var(--reduce-percent));
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.zoom-out {
+  transform-origin: var(--transform-origin);
+  transform: scale(var(--reduce-percent));
+  animation-duration: var(--animation-time);
+  animation-name: var(--animation-o-name);
+  animation-timing-function: var(--animation-ease);
+}
+
+.zoom-in {
+  transform-origin: var(--transform-origin);
+  transform: scale(1);
+  animation-duration: var(--animation-time);
+  animation-name: var(--animation-i-name);
+  animation-timing-function: var(--animation-ease);
+}
+
+
+.streaming {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  will-change: transform;
+}
