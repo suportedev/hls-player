@@ -3,7 +3,6 @@ $(document).ready(function () {
   const root = document.documentElement;
   var pub_i = -1;
 
-
   window.api.setStreamingMidia((_event, value) => {
     window.StreamingMidia = value;
     handleStreamingMidia();
@@ -27,11 +26,11 @@ $(document).ready(function () {
   function pubChecker() {
     const { StreamingMidia } = window;
     const date = new Date();
-    const now = `${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`;
+    const now = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
     const selectedMidia = StreamingMidia.filter(schedule => schedule.Range.includes(now) && schedule.PlayedAt !== now);
 
     if (selectedMidia.length) {
-    
+
       const pubPlayer = new Promise((resolve, reject) => {
         function play() {
           console.log('play');
@@ -47,9 +46,9 @@ $(document).ready(function () {
           handleAnimation('out', midia.Animation);
           playPromisse(midia)
             .then((index) => {
-            window.StreamingMidia[index].PlayedAt = now;
-            play();
-          });
+              window.StreamingMidia[index].PlayedAt = now;
+              play();
+            });
         }
         play();
       });
@@ -80,8 +79,6 @@ $(document).ready(function () {
       resolve(window.StreamingMidia.indexOf(midia));
     });
   });
-
-
 
 
   function handleAnimation(mode, animation) {
