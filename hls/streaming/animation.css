@@ -1,6 +1,6 @@
 :root {
   --animation-time: .8s;
-  --animation-ease: cubic-bezier(1, -0.01, 0, 1) --reduce-width: 0;
+  --animation-ease: cubic-bezier(1, -0.01, 0, 1);
   --reduce-width: 1440;
   --reduce-percent: calc(var(--reduce-width) / 1920);
   --animation-o-name: zoom-out;
@@ -10,7 +10,7 @@
 
 @keyframes zoom-out {
   0% {
-    width: 100%;
+    transform: scale(1);
   }
 
   100% {
