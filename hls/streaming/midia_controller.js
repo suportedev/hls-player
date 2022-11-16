@@ -2,14 +2,27 @@ $(document).ready(function () {
 
   const root = document.documentElement;
   var pub_i = -1;
+  let playing = false;
+  let running = false;
 
   window.api.setStreamingMidia((_event, value) => {
+   
+    if (!!window.StreamingMidia) {
+      value.map((item, index) => {
+        value[index].PlayedAt = window.StreamingMidia.find(i => i.ID === item.ID).PlayedAt;
+      })
+    }
+   
+    if (JSON.stringify(value) === JSON.stringify(window.StreamingMidia)) return;
+    if (playing) return;
+
     window.StreamingMidia = value;
     handleStreamingMidia();
   })
 
   function handleStreamingMidia() {
     const { StreamingMidia } = window;
+    document.getElementById('pub').innerHTML = '';
     StreamingMidia.forEach((schedule, index) => {
       if (schedule.Type === 'video/mp4') {
         const video = document.createElement('video');
@@ -20,10 +33,11 @@ $(document).ready(function () {
         document.getElementById('pub').appendChild(video);
       }
     });
-    pubChecker();
+    if(!running) pubChecker();
   }
 
   function pubChecker() {
+    running = true;
     const { StreamingMidia } = window;
     const date = new Date();
     const now = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
@@ -32,13 +46,18 @@ $(document).ready(function () {
     if (selectedMidia.length) {
 
       const pubPlayer = new Promise((resolve, reject) => {
+
         function play() {
-          console.log('play');
+
+          playing = true;
+
           let last_id = pub_i;
           pub_i++;
 
           if (pub_i >= selectedMidia.length) {
             pub_i = -1;
+            playing = false;
+
             return resolve(selectedMidia[last_id]);
           }
 
@@ -82,7 +101,6 @@ $(document).ready(function () {
 
 
   function handleAnimation(mode, animation) {
-    console.log('handleAnimation');
     const video = $('#video');
     const root = document.documentElement;
 
@@ -111,9 +129,6 @@ $(document).ready(function () {
     }
     return;
   }
-
-
-
 })
 
 
