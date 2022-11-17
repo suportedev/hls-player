@@ -6,13 +6,12 @@ $(document).ready(function () {
   let running = false;
 
   window.api.setStreamingMidia((_event, value) => {
-   
-    if (!!window.StreamingMidia) {
+    if (window.StreamingMidia !== undefined) {
       value.map((item, index) => {
-        value[index].PlayedAt = window.StreamingMidia.find(i => i.ID === item.ID).PlayedAt;
+        value[index]['PlayedAt'] = window.StreamingMidia.find(i => i.ID === item.ID).PlayedAt;
       })
     }
-   
+
     if (JSON.stringify(value) === JSON.stringify(window.StreamingMidia)) return;
     if (playing) return;
 
@@ -33,7 +32,7 @@ $(document).ready(function () {
         document.getElementById('pub').appendChild(video);
       }
     });
-    if(!running) pubChecker();
+    if (!running) pubChecker();
   }
 
   function pubChecker() {
