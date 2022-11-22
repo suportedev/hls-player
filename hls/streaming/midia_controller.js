@@ -24,7 +24,7 @@ $(document).ready(function () {
     document.getElementById('pub').innerHTML = '';
     StreamingMidia.forEach((schedule, index) => {
       if (schedule.Type === 'video/mp4') {
-        const video = document.createElement('video');
+        let video = document.createElement('video');
         video.muted = true;
         video.setAttribute('preload', 'auto');
         video.setAttribute('id', 'pub-player-' + schedule.ID);
