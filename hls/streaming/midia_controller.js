@@ -25,8 +25,8 @@ $(document).ready(function () {
     StreamingMidia.forEach((schedule, index) => {
       if (schedule.Type === 'video/mp4') {
         const video = document.createElement('video');
+        video.muted = true;
         video.setAttribute('preload', 'auto');
-        video.setAttribute('muted', 'true');
         video.setAttribute('id', 'pub-player-' + schedule.ID);
         video.setAttribute('src', schedule.Src);
         video.style.display = 'none';
