@@ -26,6 +26,7 @@ $(document).ready(function () {
       if (schedule.Type === 'video/mp4') {
         const video = document.createElement('video');
         video.setAttribute('preload', 'auto');
+        video.setAttribute('muted', 'true');
         video.setAttribute('id', 'pub-player-' + schedule.ID);
         video.setAttribute('src', schedule.Src);
         video.style.display = 'none';
@@ -120,11 +121,11 @@ $(document).ready(function () {
     if (mode === 'out') {
       video.addClass('zoom-out');
       video.removeClass('zoom-in');
-      video[0].volume = .3;
+      // video[0].volume = .3;
     } else {
       video.addClass('zoom-in');
       video.removeClass('zoom-out');
-      video[0].volume = 1;
+      // video[0].volume = 1;
     }
     return;
   }
